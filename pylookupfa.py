@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
-python boilerplate for scripts
-describe the program here
+Creates a lookup table from the sequence identifiers of 
+a FASTA file, allows sequence naming with custom pattern.
 """
 
 import sys # import sys so we can use the exit function
@@ -12,7 +12,13 @@ import re
 def main():
     """
     main entry point
-    All functions should have a docstring
+    First arguments are parsed, we detect if -name was not passed so we can
+    infer it from the basename of the input file.
+    Then we quantify and store all original sequence IDs.
+    Based on no. of sequence IDs we prepare a naming system with numbers 
+    and padding zeroes, plus a template string (the -name, that can be custom.).
+    Then this is written to disk as a .tsv file.
+    This can be used by pyreplacefa.py as a lookup table, and can be kept around for tracking.
     """
     # part 0: argument parser
     parser=argparse.ArgumentParser(description="Program that makes a lookup table of seqIDs")
