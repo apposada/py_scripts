@@ -31,7 +31,7 @@ def main():
     with open(args.l) as lookup_handle:
         lookup_list = csv.reader(lookup_handle, delimiter='\t')
         for entry in lookup_list:
-            lookup_dict[entry[0]] = entry[1]
+            lookup_dict[entry[0].replace(">","")] = entry[1].replace(">","")
 
     # part 2
     # create an output file
