@@ -41,9 +41,9 @@ def main():
     # create anndata object
     ad = anndata.AnnData(X = m)
     # label colnames
-    ad.obs.index = bcs
+    ad.obs_names = bcs
     # label rownames
-    ad.var.index = g
+    ad.var_names = g
 
     # if provided, load metadata and add to anndata object
     if args.md is not None :
@@ -52,7 +52,8 @@ def main():
         md.index = bcs
         print("Adding cell metadata...")
         ad.obs = md
-    
+        ad.obs_names = bcs
+
     # write anndata object to disk
     print("Saving...")
     ad.write_h5ad(filename=args.o, compression = "gzip")
